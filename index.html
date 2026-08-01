@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketingowy Jezus | Autentyczność • Wspólnota • Prawda</title>
+  <meta name="description" content="Jak największy Nauczyciel w historii stosował zasady, których współczesny marketing dopiero się uczy.">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
+
+    :root {
+      --bg: #0b0d11;
+      --bg-soft: #12151c;
+      --bg-card: #181c26;
+      --bg-card-hover: #1e2330;
+      --text: #f0f2f5;
+      --text-muted: #8b95a8;
+      --accent: #d4af37;
+      --accent-glow: rgba(212, 175, 55, 0.25);
+      --accent-soft: rgba(212, 175, 55, 0.12);
+      --border: #2a3040;
+      --radius: 18px;
+      --radius-sm: 12px;
+      --shadow: 0 25px 60px rgba(0,0,0,0.5);
+      --transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ========== NAV ========== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(11, 13, 17, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid transparent;
+      transition: all 0.4s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(11, 13, 17, 0.92);
+      border-bottom-color: var(--border);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    }
+
+    .nav-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.3px;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.25s;
+      position: relative;
+      padding: 4px 0;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.35s ease;
+      border-radius: 2px;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.6rem;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 140px 28px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 900px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 65%);
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    .hero-content {
+      max-width: 880px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 9px 20px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+      letter-spacing: 0.8px;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.2rem, 8vw, 5.4rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -1.8px;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #d4af37 0%, #f0d060 50%, #d4af37 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.22rem;
+      color: var(--text-muted);
+      max-width: 620px;
+      margin: 0 auto 44px;
+      line-height: 1.75;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 17px 34px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      cursor: pointer;
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #d4af37, #e8c547);
+      color: #0b0d11;
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(212, 175, 55, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    /* ========== SECTIONS ========== */
+    section {
+      padding: 110px 28px;
+      position: relative;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.1rem, 4.5vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 18px;
+      letter-spacing: -0.9px;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      max-width: 580px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ========== PRINCIPLES ========== */
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 28px;
+    }
+
+    .principle-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 34px;
+      transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .principle-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 0;
+      background: linear-gradient(to bottom, var(--accent), #e8c547);
+      transition: height 0.45s ease;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .principle-card:hover {
+      transform: translateY(-10px);
+      background: var(--bg-card-hover);
+      border-color: rgba(212, 175, 55, 0.35);
+      box-shadow: var(--shadow);
+    }
+
+    .principle-card:hover::before {
+      height: 100%;
+    }
+
+    .principle-number {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 1.5px;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+
+    .principle-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 14px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .principle-card p {
+      color: var(--text-muted);
+      font-size: 1.02rem;
+      line-height: 1.7;
+    }
+
+    /* ========== TIMELINE ========== */
+    .timeline {
+      position: relative;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 23px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      opacity: 0.4;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 72px;
+      margin-bottom: 52px;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 14px;
+      top: 6px;
+      width: 20px;
+      height: 20px;
+      background: var(--bg);
+      border: 3px solid var(--accent);
+      border-radius: 50%;
+      z-index: 2;
+      box-shadow: 0 0 0 6px var(--accent-soft);
+    }
+
+    .timeline-content h3 {
+      font-size: 1.28rem;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .timeline-content p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    /* ========== QUOTE ========== */
+    .quote-section {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 120px 28px;
+    }
+
+    .quote-box {
+      max-width: 780px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+
+    .quote-box::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 9rem;
+      color: var(--accent);
+      opacity: 0.12;
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3.5vw, 1.9rem);
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .quote-author {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+    }
+
+    /* ========== CTA ========== */
+    .cta-section {
+      text-align: center;
+      padding: 130px 28px;
+    }
+
+    .cta-box {
+      background: linear-gradient(160deg, var(--bg-card) 0%, #1a1f2b 100%);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 72px 48px;
+      max-width: 720px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      left: -20%;
+      width: 140%;
+      height: 140%;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 55%);
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    .cta-box h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 4vw, 2.5rem);
+      margin-bottom: 18px;
+      position: relative;
+      line-height: 1.25;
+    }
+
+    .cta-box p {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      margin-bottom: 36px;
+      position: relative;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 28px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    footer p:first-child {
+      margin-bottom: 8px;
+    }
+
+    footer .tagline {
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    /* ========== ANIMATIONS ========== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(11, 13, 17, 0.98);
+        flex-direction: column;
+        padding: 24px 28px;
+        border-bottom: 1px solid var(--border);
+        gap: 18px;
+        backdrop-filter: blur(20px);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .hero {
+        padding: 150px 24px 90px;
+      }
+
+      .timeline::before {
+        left: 11px;
+      }
+
+      .timeline-item {
+        padding-left: 52px;
+      }
+
+      .timeline-dot {
+        left: 2px;
+        width: 18px;
+        height: 18px;
+      }
+
+      .cta-box {
+        padding: 52px 28px;
+      }
+
+      section {
+        padding: 90px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="logo">Marketingowy <span>Jezus</span></a>
+      <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#zasady" class="nav-link">Zasady</a></li>
+        <li><a href="#droga" class="nav-link">Droga</a></li>
+        <li><a href="#cytat" class="nav-link">Prawda</a></li>
+        <li><a href="#zaproszenie" class="nav-link">Zaproszenie</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">NIE PRODUKT • NIE MARKA • NIE KAMPANIA</div>
+      <h1>Marketingowy<br><span>Jezus</span></h1>
+      <p class="hero-sub">
+        Jak największy Nauczyciel w historii stosował zasady,  
+        których współczesny marketing dopiero się uczy:  
+        autentyczność, wspólnota i realna wartość.
+      </p>
+      <div class="hero-cta">
+        <a href="#zasady" class="btn btn-primary">Zobacz zasady</a>
+        <a href="#zaproszenie" class="btn btn-secondary">Idź głębiej</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ZASADY -->
+  <section id="zasady">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Cztery zasady, które wyprzedziły marketing o 2000 lat</h2>
+        <p>To nie strategie. To sposób bycia, który do dziś zmienia ludzkie życie.</p>
+      </div>
+
+      <div class="principles">
+        <div class="principle-card reveal">
+          <div class="principle-number">01</div>
+          <h3>Autentyczność zamiast wizerunku</h3>
+          <p>Jezus nie budował personal brandu. Był spójny. Mówił to, co żył. Ludzie podążali za Nim nie z powodu dobrego brandingu, ale dlatego, że Jego słowa miały ciężar prawdy.</p>
+        </div>
+
+        <div class="principle-card reveal">
+          <div class="principle-number">02</div>
+          <h3>Wspólnota zamiast zasięgu</h3>
+          <p>Algorytmy gonią za liczbami. Jezus formował uczniów. Nie zbierał followersów – tworzył rodzinę. To fundamentalna różnica między marketingiem a Ewangelią.</p>
+        </div>
+
+        <div class="principle-card reveal">
+          <div class="principle-number">03</div>
+          <h3>Storytelling, który przemienia</h3>
+          <p>Przypowieści Jezusa to mistrzostwo opowiadania. Proste historie, które wchodziły głęboko i zostawiały człowieka innym. Nie content do konsumpcji – narzędzie zmiany.</p>
+        </div>
+
+        <div class="principle-card reveal">
+          <div class="principle-number">04</div>
+          <h3>Wartość zamiast transakcji</h3>
+          <p>Najlepszy marketing rozwiązuje problem. Jezus oferował przebaczenie, nowe serce i miejsce w rodzinie. To nie była transakcja. To było darmowe zaproszenie, które kosztowało Go wszystko.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DROGA -->
+  <section id="droga" style="background: var(--bg-soft);">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Droga, którą szedł</h2>
+        <p>Nie strategia. Nie lejek sprzedażowy. Życie.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>Przyszedł tam, gdzie byli ludzie</h3>
+            <p>Nie czekał, aż przyjdą do Niego. Szedł do wiosek, nad jezioro, do domów celników i grzeszników.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>Mówił językiem, który rozumieli</h3>
+            <p>Używał obrazów z codziennego życia: siewca, owce, monety, uczta. Prawda ubrana w historię, którą każdy mógł pojąć.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>Budował relację, nie zasięg</h3>
+            <p>Dwunastu, potem siedemdziesięciu. Inwestował czas w niewielu, żeby potem dotrzeć do wielu.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>Oddał wszystko</h3>
+            <p>Największa wartość zawsze kosztuje. On zapłacił najwyższą cenę, żeby oferta była darmowa.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CYTAT -->
+  <section id="cytat" class="quote-section">
+    <div class="container">
+      <div class="quote-box reveal">
+        <p class="quote-text">
+          Jezus nie potrzebował marketingu.<br>
+          To marketing w końcu zaczyna rozumieć<br>
+          to, co On robił od początku.
+        </p>
+        <div class="quote-author">— Prawda, którą warto zapamiętać</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ZAPROSZENIE -->
+  <section id="zaproszenie" class="cta-section">
+    <div class="cta-box reveal">
+      <h2>To nie jest produkt.<br>To jest Droga.</h2>
+      <p>
+        Najlepszy marketing zawsze prowadzi do Niego.<br>
+        Nie sprzedajemy emocji. Pokazujemy realną obecność.
+      </p>
+      <a href="#" class="btn btn-primary">Chcę iść dalej</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Marketingowy Jezus • 2026</p>
+    <p class="tagline">Nie jesteś sam. Prawdziwa wspólnota istnieje.</p>
+  </footer>
+
+  <script>
+    // Navbar scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 30);
+    });
+
+    // Mobile menu
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    // Active link
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        if (scrollY >= section.offsetTop - 140) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+      });
+    });
+
+    // Reveal animation
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // Close menu on click
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('open');
+      });
+    });
+  </script>
+<style>
+.vote-box{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:30px;
+    margin:40px 0;
+}
+
+.vote-btn{
+    background:#181c26;
+    color:white;
+    border:1px solid #2a3040;
+    border-radius:15px;
+    padding:15px 25px;
+    font-size:24px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.vote-btn:hover{
+    border-color:#d4af37;
+    color:#d4af37;
+    transform:translateY(-3px);
+}
+
+.vote-count{
+    display:block;
+    font-size:16px;
+    margin-top:8px;
+}
+</style>
+
+<div class="vote-box">
+    <button class="vote-btn" id="upVote">
+        👍
+        <span class="vote-count" id="upCount">0</span>
+    </button>
+
+    <button class="vote-btn" id="downVote">
+        👎
+        <span class="vote-count" id="downCount">0</span>
+    </button>
+</div>
+
+<script>
+let upVotes = Number(localStorage.getItem("upVotes")) || 0;
+let downVotes = Number(localStorage.getItem("downVotes")) || 0;
+let voted = localStorage.getItem("voted");
+
+document.getElementById("upCount").textContent = upVotes;
+document.getElementById("downCount").textContent = downVotes;
+
+if(voted){
+    document.getElementById("upVote").disabled = true;
+    document.getElementById("downVote").disabled = true;
+}
+
+document.getElementById("upVote").onclick = function(){
+    if(!voted){
+        upVotes++;
+        localStorage.setItem("upVotes", upVotes);
+        localStorage.setItem("voted", "yes");
+        document.getElementById("upCount").textContent = upVotes;
+        disableVoting();
+    }
+};
+
+document.getElementById("downVote").onclick = function(){
+    if(!voted){
+        downVotes++;
+        localStorage.setItem("downVotes", downVotes);
+        localStorage.setItem("voted", "yes");
+        document.getElementById("downCount").textContent = downVotes;
+        disableVoting();
+    }
+};
+
+function disableVoting(){
+    document.getElementById("upVote").disabled = true;
+    document.getElementById("downVote").disabled = true;
+}
+</script>
+</body>
+</html>
